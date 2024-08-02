@@ -1,42 +1,41 @@
-class Car:
+parked_car=[]
+def park():
+    car=(input("enter the car number:"))
+    parked_car.append(car)
+    print ("car parked")
 
-    def __init__(self, speed=0):
-        self.speed = speed
-        self.odometer = 0
-        self.time = 0
+def remove():
+    car_remove=(input("enter the car number:"))
+    if car_remove in parked_car:
+        parked_car.remove(car_remove)
+        print("car removed")
+    else:
+        print("car not found")
 
-    def accelerate(self):
-        self.speed += 5
+def list():
+    a=len(parked_car)
+    print ("No of parked car:",a)
+    print("car numbers",parked_car)
 
-    def brake(self):
-        self.speed -= 5
+i=0
+while i<4:
+ i=i+1
+ print(" \n1 parking")
+ print("2 remove")
+ print("3 list parked car")
+ print("4 exit")
+ choice=(input("Enter your choice:"))
+ if choice=="1":
+    park()
+ elif choice=="2":
+    remove()
+ elif choice=="3":
+    list()
+ elif choice=="4":
+    print("thank you")
+    break
+ else:
+    print("enter the choice correctly")
 
-    def step(self):
-        self.odometer += self.speed
-        self.time += 1
+print ("parking full")
 
-    def average_speed(self):
-        return self.odometer / self.time
-
-
-if __name__ == '__main__':
-
-    my_car = Car()
-    print("I'm a car!")
-    while True:
-        action = input("What should I do? [A]ccelerate, [B]rake, "
-                        "show [O]dometer, or show average [S]peed?").upper()
-        if action not in "ABOS" or len(action) != 1:
-            print("I don't know how to do that")
-            continue
-        if action == 'A':
-            my_car.accelerate()
-            print("Accelerating...")
-        elif action == 'B':
-            my_car.brake()
-            print("Braking...")
-        elif action == 'O':
-            print("The car has driven {} kilometers".format(my_car.odometer))
-        elif action == 'S':
-            print("The car's average speed was {} kph".format(my_car.average_speed()))
-        my_car.step()
